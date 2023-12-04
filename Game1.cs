@@ -8,6 +8,7 @@ namespace Monogame_Lesson_2___Scaled_Images
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        Texture2D rectangleTexture, circleTexture;
 
         public Game1()
         {
@@ -21,6 +22,9 @@ namespace Monogame_Lesson_2___Scaled_Images
             // TODO: Add your initialization logic here
 
             base.Initialize();
+            _graphics.PreferredBackBufferWidth = 800;
+            _graphics.PreferredBackBufferHeight = 500;
+            _graphics.ApplyChanges();
         }
 
         protected override void LoadContent()
@@ -28,6 +32,8 @@ namespace Monogame_Lesson_2___Scaled_Images
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            rectangleTexture = Content.Load<Texture2D>("rectangle");
+            circleTexture = Content.Load<Texture2D>("circle");
         }
 
         protected override void Update(GameTime gameTime)
@@ -45,7 +51,10 @@ namespace Monogame_Lesson_2___Scaled_Images
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(rectangleTexture, new Rectangle(100, 100, 40, 40), Color.White);
+            _spriteBatch.Draw(circleTexture, new Rectangle(100, 60, 600, 400), Color.SaddleBrown);
+            _spriteBatch.End();
             base.Draw(gameTime);
         }
     }
